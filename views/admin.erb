@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Ridesharing Admin</title>
+</head>
+
+<body>
+    <h1>Ridesharing Admin</h1>
+    <h2>All proxy numbers</h2>
+    <ul>
+      <% proxy_numbers.each do |number| %>
+        <li><%= number[0] %></li>
+      <% end %>
+    </ul>
+    <h2>Current Rides</h2>
+    <table border="1">
+        <tr>
+            <th>Customer</th>
+            <th>Driver</th>
+            <th>Start</th>
+            <th>Destination</th>
+            <th>Date and Time</th>
+            <th>Proxy Number</th>
+        </tr>
+        <% rides.each do |ride| %>
+        <tr>
+            <td><%= ride[0] %></td>
+            <td><%= ride[1] %></td>
+            <td><%= ride[2] %></td>
+            <td><%= ride[3] %></td>
+            <td><%= ride[4] %></td>
+            <td><%= ride[5] %></td>
+        </tr>
+        <% end %>
+    </table>
+    <h2>Create a Ride</h2>
+    <form action="/createride" method="post">
+        <div>
+            <label>Customer:</label>
+            <br />
+            <select name="customer">
+              <% customers.each do |customer| %>
+                <option value="<%= customer[0] %>"><%= customer[1] %> (<%= customer[2] %>)</option></select>
+              <% end %>
+            </select>
+        </div>
+        <div>
+            <label>Driver:</label>
+            <br />
+            <select name="driver">
+              <% drivers.each do |driver| %>
+                <option value="<%= driver[0] %>"><%= driver[1] %> (<%= driver[2] %>)</option>
+              <% end %>
+            </select>
+        </div>
+        <div>
+            <label>Start (location):</label>
+            <br />
+            <input type="text" name="start" />
+        </div>
+        <div>
+            <label>Destination (location):</label>
+            <br />
+            <input type="text" name="destination" />
+        </div>
+        <div>
+            <label>Date and Time:</label>
+            <br />
+            <input type="text" name="datetime" />
+        </div>
+        <div>
+            <input type="submit" value="Create Ride" />
+        </div>
+    </form>
+</body>
+
+</html>
